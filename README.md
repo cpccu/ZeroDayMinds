@@ -1,0 +1,3 @@
+# ZeroDayMinds
+
+Hackathon contest repository.
