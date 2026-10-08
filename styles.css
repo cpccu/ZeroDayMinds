@@ -1,0 +1,960 @@
+/* ==========================================
+   CampusOS - Porcelain Japandi theme
+   Light lavender + light sky blue + sage green
+   ========================================== */
+
+/* ==========================================
+   1. VARIABLES & RESET
+   ========================================== */
+:root {
+    /* surfaces */
+    --bg-main: #faf7fd;
+    --bg-tint: #f3eefa;
+    --card-bg: #ffffff;
+
+    /* sage green text */
+    --text-dark: #44614b;
+    --text-strong: #34503c;
+    --text-muted: #6b846c;
+
+    /* light lavender (main accent) */
+    --lav: #c8b6ee;
+    --lav-hover: #b9a3e8;
+    --lav-soft: #ede6fa;
+    --lav-deep: #7a62b5;
+
+    /* light sky blue (second accent) */
+    --sky: #bce0f4;
+    --sky-soft: #e2f2fb;
+    --sky-deep: #4f86a3;
+
+    /* kept names used elsewhere in the app */
+    --primary-blue: var(--lav-deep);
+    --primary-hover: #66509f;
+    --secondary-bg: var(--bg-tint);
+    --secondary-hover: var(--lav-soft);
+    --border-color: #e4dcf1;
+
+    --header-bg: linear-gradient(110deg, #dccff4 0%, #d6dff5 50%, #c9e6f6 100%);
+
+    --radius-lg: 18px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    --shadow-sm: 0 2px 10px rgba(150, 125, 205, 0.10);
+    --shadow-md: 0 10px 26px rgba(150, 125, 205, 0.18);
+    --shadow-lg: 0 24px 50px rgba(90, 110, 100, 0.22);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    color: var(--text-strong);
+    letter-spacing: 0.2px;
+}
+
+h2 { font-size: 1.9rem; font-weight: 700; }
+h3 { font-size: 1.35rem; font-weight: 700; }
+h4 { font-size: 1.2rem; font-weight: 700; }
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+    line-height: 1.55;
+    min-height: 100vh;
+}
+
+/* ==========================================
+   2. TOP APP HEADER
+   ========================================== */
+header, .app-header, #app-header {
+    position: relative;
+    z-index: 1;
+    background: var(--header-bg);
+    color: var(--text-strong);
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.brand,
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-logo {
+    height: 46px;
+    width: auto;
+    background: #ffffff;
+    padding: 4px;
+    border-radius: 12px;
+    object-fit: contain;
+    box-shadow: 0 2px 10px rgba(122, 98, 181, 0.18);
+}
+
+.brand h1,
+.brand-title {
+    font-family: 'Great Vibes', 'Brush Script MT', cursive;
+    font-size: 3.6rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--text-strong);
+    line-height: 1;
+    padding: 4px 6px 8px;
+    text-shadow: 0 2px 8px rgba(255, 255, 255, 0.7);
+}
+
+.brand h1 span {
+    color: var(--lav-deep);
+}
+
+.badge-subtle,
+.brand-badge {
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--text-dark);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.bus-ticker,
+.bus-pill {
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ticker-dot,
+.bus-pill .status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #8fbf9a;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(143, 191, 154, 0.7);
+    animation: pulse 2s infinite;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-profile > span,
+.user-account {
+    color: var(--text-dark);
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.btn-signout {
+    background: #ffffff;
+    color: var(--text-strong);
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-signout:hover {
+    background: var(--lav-soft);
+}
+
+/* ==========================================
+   3. NAVIGATION TABS BAR
+   ========================================== */
+.nav-bar, nav {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 32px;
+    display: flex;
+    gap: 26px;
+    overflow-x: auto;
+}
+
+.nav-link, nav button {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 14px 4px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.nav-link:hover, nav button:hover {
+    color: var(--lav-deep);
+}
+
+.nav-link.active, nav button.active {
+    color: var(--lav-deep);
+    border-bottom-color: var(--lav);
+}
+
+/* ==========================================
+   4. MAIN CONTAINER & SECTION HEADERS
+   ========================================== */
+.main-container, main {
+    position: relative;
+    z-index: 1;
+    max-width: 1240px;
+    margin: 36px auto;
+    padding: 0 24px;
+}
+
+.app-section, .tab-content {
+    display: none;
+}
+
+.app-section.active, .tab-content.active {
+    display: block;
+}
+
+.section-title-group,
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 26px;
+}
+
+.section-title-group h2,
+.section-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-strong);
+}
+
+.section-title-group p,
+.section-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 2px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* Primary & Secondary Buttons */
+.btn-primary, .btn-post, .btn {
+    background-color: var(--lav);
+    color: var(--text-strong);
+    border: none;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: background-color 0.25s, transform 0.2s, box-shadow 0.25s;
+}
+
+.btn-primary:hover, .btn-post:hover, .btn:hover {
+    background-color: var(--lav-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background-color: var(--sky-soft);
+    color: var(--text-strong);
+    box-shadow: none;
+}
+
+.btn-secondary:hover {
+    background-color: var(--sky);
+}
+
+.btn-outline {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(122, 98, 181, 0.35);
+    box-shadow: none;
+}
+
+.btn-outline:hover {
+    background: #ffffff;
+}
+
+.btn-sm {
+    padding: 6px 16px;
+    font-size: 0.82rem;
+}
+
+/* ==========================================
+   5. SEARCH & FILTER CONTROLS
+   ========================================== */
+.controls-row,
+.filter-bar {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 26px;
+    flex-wrap: wrap;
+}
+
+.filter-bar input[type="text"] {
+    flex: 1;
+    min-width: 220px;
+}
+
+.filter-bar select {
+    width: 320px;
+    max-width: 100%;
+}
+
+.search-input, .dept-select, input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="date"], textarea, select {
+    padding: 11px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    background-color: #ffffff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #9bb09c;
+}
+
+.search-input {
+    flex: 1;
+}
+
+.dept-select {
+    width: 320px;
+}
+
+.search-input:focus, .dept-select:focus, input:focus, select:focus, textarea:focus {
+    border-color: var(--lav);
+    box-shadow: 0 0 0 4px rgba(200, 182, 238, 0.30);
+}
+
+input[type="file"] {
+    padding: 8px 12px;
+    background: var(--bg-tint);
+    border-style: dashed;
+    width: 100%;
+}
+
+/* ==========================================
+   6. CARDS & GRID SYSTEM  (with the "flow")
+   ========================================== */
+.grid-container, .notices-grid, #notices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 22px;
+}
+
+.card, .notice-card, .club-card, .bus-card, .column-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    animation: flowIn 0.6s ease backwards;
+}
+
+/* soft lavender -> sky ribbon that slowly flows along the top of every card */
+.card::before, .notice-card::before, .club-card::before, .bus-card::before, .column-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--lav), var(--sky), var(--lav), var(--sky));
+    background-size: 300% 100%;
+    animation: ribbonFlow 7s linear infinite;
+    opacity: 0.9;
+}
+
+.card:hover, .notice-card:hover, .bus-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--lav);
+}
+
+/* staggered entrance */
+.grid-container > :nth-child(1), .club-grid > :nth-child(1) { animation-delay: 0.00s; }
+.grid-container > :nth-child(2), .club-grid > :nth-child(2) { animation-delay: 0.06s; }
+.grid-container > :nth-child(3), .club-grid > :nth-child(3) { animation-delay: 0.12s; }
+.grid-container > :nth-child(4), .club-grid > :nth-child(4) { animation-delay: 0.18s; }
+.grid-container > :nth-child(5), .club-grid > :nth-child(5) { animation-delay: 0.24s; }
+.grid-container > :nth-child(6), .club-grid > :nth-child(6) { animation-delay: 0.30s; }
+.grid-container > :nth-child(n+7), .club-grid > :nth-child(n+7) { animation-delay: 0.36s; }
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.badge {
+    background: var(--sky-soft);
+    color: var(--text-strong);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+
+.timestamp {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* two-column helpdesk */
+.dual-column {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    align-items: start;
+}
+
+.column-card h3 {
+    margin-bottom: 14px;
+}
+
+.search-box {
+    margin-bottom: 12px;
+}
+
+.search-box input {
+    width: 100%;
+}
+
+/* ==========================================
+   7. CLUBS DIRECTORY & SUB-WINGS
+   ========================================== */
+.club-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 22px;
+    margin-top: 16px;
+}
+
+.club-card {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.club-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--lav);
+}
+
+.club-icon {
+    font-size: 2rem;
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--lav-soft), var(--sky-soft));
+    border-radius: 50%;
+}
+
+.sub-wings-text {
+    font-size: 0.8rem;
+    color: var(--lav-deep);
+    font-weight: 700;
+}
+
+/* ==========================================
+   8. MODALS & AUTH OVERLAY
+   ========================================== */
+.modal-overlay, .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(68, 97, 75, 0.30);
+    backdrop-filter: blur(6px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-overlay.active, .modal.active {
+    display: flex !important;
+}
+
+.modal-overlay.hidden, .modal.hidden {
+    display: none !important;
+}
+
+.modal-card, .modal-content {
+    background: var(--card-bg);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 480px;
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+}
+
+.modal-card h3 {
+    margin-bottom: 14px;
+}
+
+.modal-sm {
+    max-width: 360px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: var(--text-muted);
+}
+
+.qr-box {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+}
+
+.brand-text {
+    font-family: 'Great Vibes', 'Brush Script MT', cursive;
+    font-size: 1.6em;
+    font-weight: 400;
+    color: var(--lav-deep);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-strong);
+}
+
+.modal-close, .close-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-close:hover, .close-btn:hover {
+    color: var(--text-strong);
+}
+
+.form-group {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-strong);
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+}
+
+.form-actions,
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+/* ==========================================
+   9. TOP BUS STRIP  (running bus + live time)
+   ========================================== */
+.bus-strip {
+    position: relative;
+    z-index: 2;
+    height: 100px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #f6f1fd 0%, #e8f4fb 100%);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.bus-strip-info {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    right: 0;
+    padding: 0 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    z-index: 3;
+}
+
+.bus-strip-info > span {
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    padding: 3px 12px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #8fbf9a;
+    animation: pulse 2s infinite;
+}
+
+.bus-lane {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 64px;
+}
+
+.bus-road {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 10px;
+    background:
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0 22px, transparent 22px 44px) center / 100% 2px no-repeat,
+        #d9cff0;
+    animation: roadMove 1.2s linear infinite;
+}
+
+.bus {
+    position: absolute;
+    left: 0;
+    bottom: 4px;
+    width: 150px;
+    z-index: 2;
+    animation: drive 18s linear infinite;
+}
+
+.bus-bob {
+    animation: bob 0.5s ease-in-out infinite alternate;
+}
+
+.bus svg {
+    display: block;
+    width: 150px;
+    height: auto;
+    overflow: visible;
+}
+
+.bus-wheel {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: spin 0.7s linear infinite;
+}
+
+/* ==========================================
+   10. FALLING MAPLE LEAVES (empty spaces)
+   ========================================== */
+.leaves {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.leaf {
+    position: absolute;
+    top: -70px;
+    width: var(--s, 30px);
+    height: var(--s, 30px);
+    fill: var(--c, #8fb38f);
+    opacity: 0.72;
+    animation: leafFall var(--d, 20s) linear infinite;
+    animation-delay: var(--dl, 0s);
+}
+
+/* ==========================================
+   11. KEYFRAMES
+   ========================================== */
+/* Bamboo grove, bottom-left corner */
+.bamboo {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: clamp(110px, 12vw, 190px);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+/* Ocean corner, bottom-right */
+.ocean {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: clamp(180px, 19vw, 300px);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.95;
+}
+
+.ocean svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.jelly-float {
+    animation: jellyFloat 5s ease-in-out infinite alternate;
+}
+
+.jelly-float.alt {
+    animation-duration: 6.5s;
+    animation-delay: -2s;
+}
+
+.jelly-bell {
+    transform-box: fill-box;
+    transform-origin: 50% 0%;
+    animation: jellyPulse 2.8s ease-in-out infinite;
+}
+
+.jelly-tent {
+    transform-box: fill-box;
+    transform-origin: 50% 0%;
+    animation: tentSway 3.4s ease-in-out infinite alternate;
+}
+
+.bubble {
+    animation: bubbleRise 7s ease-in infinite;
+}
+
+@media (max-width: 600px) {
+    .bamboo { width: 90px; }
+    .ocean { width: 120px; }
+}
+
+.bamboo svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.sway {
+    animation: sway 7s ease-in-out infinite alternate;
+}
+
+@keyframes jellyFloat {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-14px); }
+}
+
+@keyframes jellyPulse {
+    0%, 100% { transform: scale(1, 1); }
+    50%      { transform: scale(1.06, 0.9); }
+}
+
+@keyframes tentSway {
+    from { transform: rotate(-3deg); }
+    to   { transform: rotate(3deg); }
+}
+
+@keyframes bubbleRise {
+    0%   { transform: translateY(0); opacity: 0; }
+    15%  { opacity: 0.9; }
+    100% { transform: translateY(-70px); opacity: 0; }
+}
+
+@keyframes sway {
+    from { transform: rotate(-1.4deg); }
+    to   { transform: rotate(1.6deg); }
+}
+
+@keyframes flowIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ribbonFlow {
+    from { background-position: 0% 0; }
+    to   { background-position: 300% 0; }
+}
+
+@keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(143, 191, 154, 0.7); }
+    70%  { box-shadow: 0 0 0 8px rgba(143, 191, 154, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(143, 191, 154, 0); }
+}
+
+@keyframes drive {
+    from { transform: translateX(-190px); }
+    to   { transform: translateX(calc(100vw + 40px)); }
+}
+
+@keyframes bob {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-2px); }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes roadMove {
+    from { background-position: 0 center; }
+    to   { background-position: -44px center; }
+}
+
+@keyframes leafFall {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    25%  { transform: translate(40px, 28vh) rotate(90deg); }
+    50%  { transform: translate(-30px, 56vh) rotate(190deg); }
+    75%  { transform: translate(35px, 84vh) rotate(280deg); }
+    100% { transform: translate(-10px, 118vh) rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card, .notice-card, .club-card, .bus-card, .column-card,
+    .card::before, .notice-card::before, .club-card::before, .bus-card::before, .column-card::before,
+    .bus, .bus-bob, .bus-wheel, .bus-road, .leaf, .sway, .jelly-float, .jelly-bell, .jelly-tent, .bubble, .ticker-dot, .live-dot {
+        animation: none !important;
+    }
+    .bus { transform: translateX(24px); }
+    .leaves { display: none; }
+}
+
+/* ==========================================
+   12. SAFETY NET for colors set inline by app.js
+   ========================================== */
+[style*="#e0e7ff"] {
+    background: var(--sky-soft) !important;
+    color: var(--text-strong) !important;
+}
+
+[style*="color: #2563eb"], [style*="color:#2563eb"] {
+    color: var(--lav-deep) !important;
+}
+
+/* ==========================================
+   13. RESPONSIVE BREAKPOINTS
+   ========================================== */
+@media (max-width: 768px) {
+    header, .app-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .brand h1 {
+        font-size: 2.8rem;
+    }
+
+    .header-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .nav-bar, nav {
+        padding: 0 16px;
+    }
+
+    .main-container, main {
+        padding: 0 16px;
+        margin: 20px auto;
+    }
+
+    .controls-row,
+    .filter-bar {
+        flex-direction: column;
+    }
+
+    .dept-select,
+    .filter-bar select {
+        width: 100%;
+    }
+
+    .section-title-group,
+    .section-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .bus-strip-info {
+        padding: 0 14px;
+        font-size: 0.74rem;
+    }
+
+    .bus svg,
+    .bus {
+        width: 120px;
+    }
+}

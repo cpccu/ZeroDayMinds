@@ -1,0 +1,62 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function isOwner() { return signedIn() && resource.data.authorId == request.auth.uid; }
+    function creatingOwn() { return signedIn() && request.resource.data.authorId == request.auth.uid; }
+    function keepsAuthor() { return request.resource.data.authorId == resource.data.authorId; }
+    function expired() { return resource.data.expiresAt is number && resource.data.expiresAt < request.time.toMillis(); }
+
+    // Each student can only read and change their own profile (and saved notices)
+    match /users/{uid} {
+      allow read, write: if signedIn() && request.auth.uid == uid;
+    }
+
+    // Notices and events: everyone can read. Signed-in students can post.
+    // Only the author can edit or delete. Anyone may remove them after they expire.
+    match /notices/{id} {
+      allow read: if true;
+      allow create: if creatingOwn();
+      allow update: if isOwner() && keepsAuthor();
+      allow delete: if isOwner() || expired();
+    }
+    match /events/{id} {
+      allow read: if true;
+      allow create: if creatingOwn();
+      allow update: if isOwner() && keepsAuthor();
+      allow delete: if isOwner() || expired();
+    }
+
+    // Materials, lost items and complaints: everyone can read. Signed-in students can post.
+    match /resources/{id} {
+      allow read: if true;
+      allow create: if creatingOwn();
+      allow update: if isOwner() && keepsAuthor();
+      allow delete: if isOwner();
+    }
+    match /lostItems/{id} {
+      allow read: if true;
+      allow create: if creatingOwn();
+      allow update: if isOwner() && keepsAuthor();
+      allow delete: if isOwner();
+    }
+    match /complaints/{id} {
+      allow read: if true;
+      allow create: if creatingOwn();
+      allow update: if isOwner() && keepsAuthor();
+      allow delete: if isOwner();
+    }
+
+    // Pictures (shrunk by the website): everyone can read. Signed-in students can add.
+    // Only the author can change or delete them. Anyone may remove them after the post expires.
+    match /files/{id} {
+      allow read: if true;
+      allow create: if creatingOwn()
+                    && request.resource.data.data is string
+                    && request.resource.data.data.size() <= 450000;
+      allow update: if isOwner() && keepsAuthor();
+      allow delete: if isOwner() || expired();
+    }
+  }
+}

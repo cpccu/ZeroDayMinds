@@ -1,66 +1,106 @@
-# CampusOS for City University
+# 🎓 CampusOS — City University Digital Hub
 
-**CampusOS** is a Smart Digital Campus Hub designed exclusively for City University. It centralizes fragmented information such as club events, schedules, and lost-and-found items into a single, highly interactive, and easily browsable web application.
+**CampusOS** is a comprehensive, all-in-one digital campus dashboard built for City University students, faculty, and staff. It brings together urgent notices, club events, academic resources, bus schedules, an AI assistant, and a lost & found system — all accessible from a single, beautiful web interface.
 
-## Problem Solved
+---
 
-City University currently relies on a chaotic mix of Facebook groups, Messenger chats, and ad-hoc Google Forms for daily operations. This causes students to constantly miss out on events, lose track of important notices, and struggle to find lost items. CampusOS solves this by being a unified **Single Source of Truth** for the campus.
+## ✨ Key Features
 
-## Modules Built
+### 📢 Urgent Notices
+- Post, edit, and delete department-specific notices
+- Filter by department or search by keyword
+- Save important notices to your personal account for later access
+- Auto-expiry system keeps the board clean
 
-This platform fully implements two core modules described in the Hackathon requirements:
+### 🎭 Club Directory
+- Browse all active student clubs and organizations
+- View upcoming club events with dates, venues, and descriptions
+- Generate QR-code entry passes for events
 
-### 1. Club & Event Engine
-A centralized feed replacing scattered Facebook groups.
-- **Unified Event Feed:** See all upcoming events across all clubs in one place.
-- **Rich Filtering & Search:** Filter events by Club or Event Type, or search for specific terms.
-- **RSVP & Ticketing System:** Students can easily RSVP to events and generate a unique QR code ticket for scanning at the door.
+### 📚 Resource Hub
+- Share and discover academic materials (notes, slides, past papers)
+- Organized by department for easy browsing
+- Upload resources with pictures and descriptions
 
-### 2. Lost & Found Box
-A structured system replacing fleeting Facebook posts.
-- **Report & Recover:** Post details about lost or found items with categorical tags, locations, and descriptions.
-- **Browse & Match:** A tabbed interface allows students to efficiently browse through all reported Lost or Found items.
-- **Direct Contact Integration:** Immediately contact the reporter directly via the integrated UI.
+### 🚌 Bus Schedule & Helpdesk
+- Full university bus timetable with routes, stops, and driver contacts
+- Smart FAQ section with instant answers to common campus questions
+- Live "next bus" reminder bar at the top of every page
+- **AI Search Assistant** — ask natural-language questions about shuttle timings, office locations, retake policies, and more
 
-### Bonus: 3D Interactive Hero
-- We built a **3D Interactive Hero Section** using `@react-three/fiber` and `@react-three/rapier` physics engine. Interactive objects fall into a contained canvas on the homepage—users can throw the objects around using their cursor, demonstrating a unique web experience that breaks the mold of standard dashboards.
+### 🤖 AI Assistant
+- Client-side keyword-matching knowledge base
+- Instant answers about bus schedules, office hours, exam policies, lost & found procedures, WiFi, clubs, and campus contacts
+- No API key or internet dependency — works entirely offline
 
-## Technology Stack
+### 📦 Lost & Found
+- Report lost or found items with descriptions and contact info
+- Submit campus complaints through a structured form
+- Only the original poster can delete their submissions
 
-- **Framework:** Next.js (App Router)
-- **Styling:** Tailwind CSS with custom vibrant Glassmorphism UI
-- **Components:** Shadcn UI, lucide-react
-- **3D & Physics:** three, @react-three/fiber, @react-three/drei, @react-three/rapier
-- **Form Handling:** react-hook-form, zod
-- **Date Management:** date-fns
-- **QR Code:** qrcode.react
+---
 
-## How to Run Locally
+## 🔐 Account System
+- Personal ID–based authentication (no university email required)
+- Accounts sync saved notices across devices via Firebase
+- Guest browsing supported — sign in only when you need to post or save
 
-1. **Clone the repository:**
-   ```bash
-   git clone <repo-url>
-   cd <repo-name>
-   ```
+---
 
-2. **Install dependencies:**
-   Make sure you are using Node 20 or higher.
-   ```bash
-   npm install
-   ```
+## 🛠️ Tech Stack
 
-3. **Run the development server:**
-   ```bash
-   npm run dev
-   ```
+| Technology | Purpose |
+|------------|---------|
+| **HTML5** | Page structure and semantic markup |
+| **CSS3** | Styling, animations (falling leaves, jellyfish, bamboo), light/dark themes |
+| **JavaScript (Vanilla)** | Application logic, navigation, rendering, AI assistant |
+| **Firebase** | Authentication (Email/Password), Firestore (real-time database), Storage (images) |
+| **QRCode.js** | QR code generation for event entry passes |
 
-4. **Open your browser:**
-   Navigate to `http://localhost:3000` to interact with CampusOS.
+---
 
-## Real-World Usability
+## 📁 File Structure
 
-Imagine a **first-year CU student** who just started. Currently, they have no idea which Facebook groups or Messenger chats contain their class info.
-With CampusOS:
-- They log in (future scope with Supabase Auth) and land on the dynamic homepage.
-- They click **"Explore Events"** and instantly see that the Robotics Club has a workshop this afternoon. They RSVP and receive a QR ticket immediately.
-- Later that day, they lose their calculator. Instead of desperately asking 5 different group chats, they navigate to the **"Lost & Found Box"** tab, see someone already posted it an hour ago, and hit "Contact Reporter" to retrieve it!
+```
+CampusOS/
+├── index.html          # Main HTML file — all sections and modals
+├── app.js              # Core application logic (navigation, rendering, auth, AI assistant)
+├── styles.css          # Primary stylesheet (layout, cards, navigation, modals)
+├── sparkle.css         # Decorative animations (leaves, jellyfish, bamboo, bubbles)
+├── theme.css           # Light/dark theme variables and overrides
+├── firebase-config.js  # Firebase project configuration (fill in your own keys)
+├── firestore.rules     # Firestore security rules
+├── logo.jpeg           # CampusOS logo
+└── README.md           # This file
+```
+
+---
+
+## 🚀 How to Run
+
+1. **Clone or download** this repository to your local machine.
+
+2. **Configure Firebase** *(optional — needed only for real-time data sharing)*:
+   - Create a Firebase project at [console.firebase.google.com](https://console.firebase.google.com)
+   - Enable **Email/Password** authentication
+   - Create a **Firestore** database
+   - Paste your Firebase config into `firebase-config.js`
+
+3. **Open `index.html`** in any modern web browser:
+   - Double-click the file, **or**
+   - Right-click → "Open with" → your browser, **or**
+   - Use a local server: `npx serve .` or VS Code Live Server extension
+
+4. **That's it!** The app works offline for browsing. Firebase is needed only for posting, saving, and syncing data across devices.
+
+---
+
+## 🌙 Light / Dark Mode
+
+Toggle the theme using the 🌙/☀️ button in the header. Your preference is saved locally.
+
+---
+
+## 📄 License
+
+This project is built for educational purposes at City University.

@@ -1,0 +1,239 @@
+/* ==========================================
+   CampusOS - Uttara blush pink + Dark mode
+   Load this AFTER styles.css and sparkle.css
+   ========================================== */
+
+/* ---------- 1. NEXT BUS REMINDER: Uttara Route = blush pink ---------- */
+#bus-reminder.bus-reminder.uttara {
+    background: linear-gradient(100deg, #fdeaf0 0%, #fad6e3 100%);
+    border-bottom: 1px solid #f4b6cb;
+    color: #8a2d52;
+}
+
+/* when the Uttara bus is about to leave: a little deeper pink, still not orange */
+#bus-reminder.bus-reminder.uttara.soon {
+    background: linear-gradient(100deg, #fbd2e1 0%, #f7b9d0 100%);
+    border-bottom-color: #ee8fb2;
+    color: #7a1f45;
+}
+
+/* ---------- 2. DARK MODE: colour variables ---------- */
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --bg-main: #16131e;
+    --bg-tint: #1f1b2b;
+    --card-bg: #221e2f;
+
+    --text-dark: #d3e3d6;
+    --text-strong: #ecf4ee;
+    --text-muted: #a3b9a6;
+
+    --lav: #8f74d4;
+    --lav-hover: #a089e0;
+    --lav-soft: #2d2645;
+    --lav-deep: #c3b0ee;
+
+    --sky: #3e6f8a;
+    --sky-soft: #1f3140;
+    --sky-deep: #8fc3e0;
+
+    --primary-blue: #c3b0ee;
+    --primary-hover: #d9ccf7;
+    --secondary-bg: #1f1b2b;
+    --secondary-hover: #2d2645;
+    --border-color: #3b3254;
+
+    --header-bg: linear-gradient(110deg, #2b2247 0%, #242b4d 50%, #1f3547 100%);
+
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 10px 26px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 24px 50px rgba(0, 0, 0, 0.60);
+}
+
+/* smooth switch between the two modes */
+body, header, nav, .card, .modal-card, .bus-strip, .bus-reminder, input, select, textarea {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ---------- 3. DARK MODE: header, tabs, strip ---------- */
+[data-theme="dark"] .badge-subtle,
+[data-theme="dark"] .brand-badge {
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+[data-theme="dark"] .bus-ticker,
+[data-theme="dark"] .bus-pill {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
+[data-theme="dark"] .brand h1,
+[data-theme="dark"] .brand-title {
+    text-shadow: 0 2px 10px rgba(143, 116, 212, 0.45);
+}
+
+[data-theme="dark"] .nav-bar,
+[data-theme="dark"] nav {
+    background: rgba(24, 20, 34, 0.88);
+}
+
+[data-theme="dark"] nav .nav-link:not(.active) {
+    color: #c3b0ee;
+}
+
+[data-theme="dark"] nav .nav-link:not(.active):hover {
+    color: #ecdffc;
+    background: linear-gradient(135deg, #2d2645, #1f3140);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .bus-strip {
+    background: linear-gradient(180deg, #1c1830 0%, #17283a 100%);
+}
+
+[data-theme="dark"] .bus-strip-info > span {
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
+[data-theme="dark"] .bus-road {
+    background:
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.55) 0 22px, transparent 22px 44px) center / 100% 2px no-repeat,
+        #3a3158;
+}
+
+/* decorations: softer so they don't glare */
+[data-theme="dark"] .leaf   { opacity: 0.45; }
+[data-theme="dark"] .bamboo { opacity: 0.55; }
+[data-theme="dark"] .ocean  { opacity: 0.55; }
+[data-theme="dark"] .bamboo svg > circle { fill: #2d2645; }
+
+/* ---------- 4. DARK MODE: buttons & sparkle titles ---------- */
+[data-theme="dark"] .btn-outline {
+    background-image: linear-gradient(135deg, #322a4d, #272140);
+    background-color: #2a2342;
+    color: #e3d9fa;
+    border-color: rgba(185, 163, 232, 0.55);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .btn-outline:hover {
+    background-image: linear-gradient(135deg, #3d3360, #30294f);
+    background-color: #332b50;
+}
+
+[data-theme="dark"] .btn-outline::after {
+    background: linear-gradient(100deg, transparent, rgba(185, 163, 232, 0.45), transparent);
+}
+
+[data-theme="dark"] .section-title-group h2,
+[data-theme="dark"] .section-header h2,
+[data-theme="dark"] .app-section > h3,
+[data-theme="dark"] #club-detail-view h3 {
+    background-image: linear-gradient(100deg,
+        #d9ccf7 0%, #b9a3e8 22%, #9fd2ee 45%, #b9a3e8 68%, #d9ccf7 100%);
+    filter: drop-shadow(0 1px 8px rgba(143, 116, 212, 0.55));
+}
+
+/* ---------- 5. DARK MODE: forms & pop-ups ---------- */
+[data-theme="dark"] .search-input,
+[data-theme="dark"] .dept-select,
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] input[type="password"],
+[data-theme="dark"] input[type="number"],
+[data-theme="dark"] input[type="date"],
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+    background-color: #2a2438;
+    color: #e6efe8;
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+    color: #7f8f82;
+}
+
+[data-theme="dark"] option {
+    background: #2a2438;
+    color: #e6efe8;
+}
+
+[data-theme="dark"] .modal-overlay,
+[data-theme="dark"] .modal {
+    background: rgba(5, 4, 10, 0.65);
+}
+
+[data-theme="dark"] .modal-header button,
+[data-theme="dark"] .modal-close {
+    color: var(--text-dark);
+}
+
+/* ---------- 6. DARK MODE: colours set in index.html's own <style> ---------- */
+[data-theme="dark"] .bus-reminder {
+    background: #231d36;
+    border-bottom-color: #3b3254;
+    color: #cfe0d2;
+}
+[data-theme="dark"] .bus-reminder.soon {
+    background: #3a2a1a;
+    border-bottom-color: #b45309;
+    color: #fdba74;
+}
+[data-theme="dark"] #bus-reminder.bus-reminder.uttara {
+    background: linear-gradient(100deg, #3a2030 0%, #482639 100%);
+    border-bottom-color: #7a3d58;
+    color: #f9c9da;
+}
+[data-theme="dark"] #bus-reminder.bus-reminder.uttara.soon {
+    background: linear-gradient(100deg, #4a2438 0%, #5a2c45 100%);
+    border-bottom-color: #c25585;
+    color: #ffd6e5;
+}
+
+[data-theme="dark"] .bus-card { background: var(--card-bg); border-color: var(--border-color); box-shadow: none; }
+[data-theme="dark"] .bus-time { color: #d3e3d6; }
+[data-theme="dark"] .bus-plate { background: rgba(251, 146, 60, 0.15); color: #fdba74; border-color: rgba(251, 146, 60, 0.4); }
+[data-theme="dark"] .bus-stop { background: #2d2645; border-color: #3b3254; color: #cfe0d2; }
+[data-theme="dark"] .bus-call { color: #86efac; border-color: rgba(134, 239, 172, 0.5); }
+[data-theme="dark"] .bus-call:hover { background: rgba(134, 239, 172, 0.12); }
+
+[data-theme="dark"] .notice-footer { border-top-color: var(--border-color); }
+[data-theme="dark"] .notice-btn { background: #2d2645; border-color: #3b3254; color: #e3d9fa; }
+[data-theme="dark"] .notice-btn:hover { background: #3b3254; }
+[data-theme="dark"] .notice-btn.danger { color: #fca5a5; }
+[data-theme="dark"] .notice-btn.danger:hover { background: rgba(239, 68, 68, 0.2); }
+[data-theme="dark"] .notice-btn.saved { background: rgba(250, 204, 21, 0.16); border-color: rgba(250, 204, 21, 0.45); color: #fde68a; }
+
+[data-theme="dark"] .auth-tabs { background: #2d2645; }
+[data-theme="dark"] .auth-tab-btn { color: #a3b9a6; }
+[data-theme="dark"] .auth-tab-btn.active { background: #3b3254; color: #e3d9fa; box-shadow: none; }
+[data-theme="dark"] .show-pass { color: #b6c9b9; }
+[data-theme="dark"] .auth-error { background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.4); color: #fca5a5; }
+[data-theme="dark"] .auth-id-box { background: #2d2645; border-color: #8f74d4; color: #e3d9fa; }
+[data-theme="dark"] .auth-skip { color: #c3b0ee; }
+
+[data-theme="dark"] .post-img-wrap,
+[data-theme="dark"] .thumb,
+[data-theme="dark"] .viewer-scroll { background: #2d2645; border-color: var(--border-color); }
+[data-theme="dark"] .viewer-box { background: var(--card-bg); }
+[data-theme="dark"] .viewer-nav { background: #3b3254; color: #e3d9fa; }
+
+/* ---------- 7. DARK MODE: colours written inline by app.js ---------- */
+[data-theme="dark"] [style*="#475569"] { color: var(--text-dark) !important; }
+[data-theme="dark"] [style*="#64748b"] { color: var(--text-muted) !important; }
+[data-theme="dark"] [style*="#1e293b"] { color: var(--text-strong) !important; }
+[data-theme="dark"] [style*="#e2e8f0"] { border-color: var(--border-color) !important; }
+
+[data-theme="dark"] [style*="#e0e7ff"] { background: #2d2645 !important; color: #d9ccf7 !important; }
+[data-theme="dark"] [style*="#f1f5f9"] { background: #2d2645 !important; color: #d9ccf7 !important; }
+[data-theme="dark"] [style*="#fee2e2"] { background: rgba(239, 68, 68, 0.2) !important; color: #fca5a5 !important; }
+[data-theme="dark"] [style*="#dcfce7"] { background: rgba(34, 197, 94, 0.18) !important; color: #86efac !important; }
+
+[data-theme="dark"] [style*="#eff6ff"] { background: #2a2245 !important; border-color: #8f74d4 !important; }
+[data-theme="dark"] [style*="#1e3a8a"] { color: #d9ccf7 !important; }
+[data-theme="dark"] [style*="#2563eb"],
+[data-theme="dark"] [style*="#7a62b5"] { color: #c3b0ee !important; }

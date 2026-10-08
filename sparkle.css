@@ -1,0 +1,268 @@
+/* ==========================================
+   CampusOS - Sparkle layer
+   Load this AFTER styles.css
+   ========================================== */
+
+:root {
+    --spark-deep-1: #8f74d4;
+    --spark-deep-2: #6a4fb0;
+    --spark-deep-3: #4f86a3;
+    --spark-sky-1: #7fbbdc;
+    --spark-sky-2: #4f86a3;
+}
+
+/* ---------- 1. SPARKLY BUTTONS ---------- */
+.btn, .btn-primary, .btn-post, .btn-signout, .auth-tab-btn.active {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Primary (deep lavender) */
+.btn, .btn-primary, .btn-post {
+    background-image: linear-gradient(135deg, var(--spark-deep-1) 0%, var(--spark-deep-2) 100%);
+    background-color: var(--spark-deep-2);
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(60, 40, 110, 0.35);
+    box-shadow: 0 4px 14px rgba(106, 79, 176, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.btn:hover, .btn-primary:hover, .btn-post:hover {
+    background-image: linear-gradient(135deg, #a089e0 0%, #7a5fc4 100%);
+    background-color: #7a5fc4;
+    box-shadow: 0 8px 22px rgba(106, 79, 176, 0.5), 0 0 14px rgba(200, 182, 238, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+/* Secondary (deep sky blue) */
+.btn-secondary {
+    background-image: linear-gradient(135deg, var(--spark-sky-1) 0%, var(--spark-sky-2) 100%);
+    background-color: var(--spark-sky-2);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(79, 134, 163, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.btn-secondary:hover {
+    background-image: linear-gradient(135deg, #92cbe8 0%, #5d97b5 100%);
+    background-color: #5d97b5;
+    box-shadow: 0 8px 22px rgba(79, 134, 163, 0.5), 0 0 14px rgba(188, 224, 244, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Outline (e.g. header Sign In) */
+.btn-outline {
+    background-image: linear-gradient(135deg, #ffffff 0%, #ece4fa 100%);
+    background-color: #ffffff;
+    color: var(--spark-deep-2);
+    text-shadow: none;
+    border: 1px solid rgba(106, 79, 176, 0.55);
+    box-shadow: 0 2px 10px rgba(122, 98, 181, 0.25);
+}
+
+.btn-outline:hover {
+    background-image: linear-gradient(135deg, #ffffff 0%, #ddd0f7 100%);
+    background-color: #ffffff;
+}
+
+/* Twinkling stars */
+.btn::before, .btn-primary::before, .btn-post::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle at 12% 28%, #ffffff 0 1.4px, transparent 2.6px),
+        radial-gradient(circle at 34% 74%, #ffffff 0 1px, transparent 2.2px),
+        radial-gradient(circle at 58% 22%, #ffffff 0 1.2px, transparent 2.4px),
+        radial-gradient(circle at 80% 70%, #ffffff 0 1.5px, transparent 2.8px),
+        radial-gradient(circle at 93% 26%, #ffffff 0 1px, transparent 2.2px);
+    animation: sparkTwinkle 2.6s ease-in-out infinite alternate;
+}
+
+.btn-outline::before {
+    background-image:
+        radial-gradient(circle at 12% 28%, #b9a3e8 0 1.4px, transparent 2.6px),
+        radial-gradient(circle at 34% 74%, #8fc3e0 0 1px, transparent 2.2px),
+        radial-gradient(circle at 58% 22%, #b9a3e8 0 1.2px, transparent 2.4px),
+        radial-gradient(circle at 80% 70%, #8fc3e0 0 1.5px, transparent 2.8px),
+        radial-gradient(circle at 93% 26%, #b9a3e8 0 1px, transparent 2.2px);
+}
+
+/* Light that sweeps across */
+.btn::after, .btn-primary::after, .btn-post::after {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: -75%;
+    width: 45%;
+    height: 140%;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+    transform: skewX(-20deg);
+    animation: sparkSweep 3.8s ease-in-out infinite;
+}
+
+.btn-outline::after {
+    background: linear-gradient(100deg, transparent, rgba(200, 182, 238, 0.7), transparent);
+}
+
+/* ---------- 2. NAVIGATION TABS ---------- */
+.nav-bar, nav {
+    gap: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.nav-link, nav button {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    padding: 9px 18px;
+    border: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    border-radius: 999px;
+    color: var(--spark-deep-2);
+    font-weight: 800;
+    transition: background 0.25s, color 0.25s, box-shadow 0.25s, transform 0.2s;
+}
+
+.nav-link:hover, nav button:hover {
+    color: var(--spark-deep-2);
+    background: linear-gradient(135deg, #ece4fa, #dff0fa);
+    box-shadow: 0 3px 12px rgba(122, 98, 181, 0.25);
+    transform: translateY(-1px);
+}
+
+.nav-link.active, nav button.active {
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(60, 40, 110, 0.4);
+    background-image: linear-gradient(135deg, var(--spark-deep-1), var(--spark-deep-2) 60%, var(--spark-deep-3));
+    border-color: transparent;
+    box-shadow: 0 4px 16px rgba(106, 79, 176, 0.45), 0 0 12px rgba(200, 182, 238, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.nav-link.active::before, nav button.active::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle at 10% 30%, #ffffff 0 1.3px, transparent 2.5px),
+        radial-gradient(circle at 35% 76%, #ffffff 0 1px, transparent 2.2px),
+        radial-gradient(circle at 62% 24%, #ffffff 0 1.2px, transparent 2.4px),
+        radial-gradient(circle at 85% 68%, #ffffff 0 1.4px, transparent 2.6px);
+    animation: sparkTwinkle 2.4s ease-in-out infinite alternate;
+}
+
+.nav-link.active::after, nav button.active::after {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: -75%;
+    width: 45%;
+    height: 140%;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transform: skewX(-20deg);
+    animation: sparkSweep 3.6s ease-in-out infinite;
+}
+
+/* ---------- 3. SPARKLY SECTION TITLES ---------- */
+.section-title-group h2,
+.section-header h2,
+.app-section > h3,
+#club-detail-view h3 {
+    position: relative;
+    display: inline-block;
+    padding-right: 34px;
+    font-weight: 700;
+    background-image: linear-gradient(100deg,
+        var(--spark-deep-2) 0%, #8f74d4 22%, var(--spark-deep-3) 45%,
+        #8f74d4 68%, var(--spark-deep-2) 100%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: titleShimmer 5s linear infinite;
+    filter: drop-shadow(0 1px 6px rgba(200, 182, 238, 0.7));
+}
+
+.section-title-group h2::after,
+.section-header h2::after,
+.app-section > h3::after,
+#club-detail-view h3::after {
+    content: "✦";
+    position: absolute;
+    top: -2px;
+    right: 8px;
+    font-size: 0.55em;
+    line-height: 1;
+    -webkit-text-fill-color: #b9a3e8;
+    color: #b9a3e8;
+    text-shadow: 0 0 8px rgba(200, 182, 238, 0.95), 0 0 14px rgba(188, 224, 244, 0.9);
+    animation: starPop 2.2s ease-in-out infinite;
+}
+
+.section-header h2::before,
+.section-title-group h2::before {
+    content: "✧";
+    position: absolute;
+    bottom: 2px;
+    right: 0;
+    font-size: 0.4em;
+    line-height: 1;
+    -webkit-text-fill-color: #8fc3e0;
+    color: #8fc3e0;
+    text-shadow: 0 0 8px rgba(188, 224, 244, 1);
+    animation: starPop 2.2s ease-in-out infinite;
+    animation-delay: -1.1s;
+}
+
+/* ---------- 4. SMALL ACTION BUTTONS (Save / Edit) get a soft glow ---------- */
+.notice-btn {
+    transition: box-shadow 0.25s, background 0.25s;
+}
+.notice-btn:hover {
+    box-shadow: 0 0 10px rgba(200, 182, 238, 0.9);
+}
+
+/* ---------- 5. KEYFRAMES ---------- */
+@keyframes sparkTwinkle {
+    0%   { opacity: 0.15; }
+    50%  { opacity: 0.85; }
+    100% { opacity: 1; }
+}
+
+@keyframes sparkSweep {
+    0%   { left: -75%; }
+    55%, 100% { left: 130%; }
+}
+
+@keyframes titleShimmer {
+    from { background-position: 0% 0; }
+    to   { background-position: 220% 0; }
+}
+
+@keyframes starPop {
+    0%, 100% { transform: scale(0.6) rotate(0deg);  opacity: 0.35; }
+    50%      { transform: scale(1.15) rotate(25deg); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn::before, .btn::after,
+    .btn-primary::before, .btn-primary::after,
+    .btn-post::before, .btn-post::after,
+    .nav-link.active::before, .nav-link.active::after,
+    nav button.active::before, nav button.active::after,
+    .section-header h2, .section-header h2::before, .section-header h2::after,
+    .section-title-group h2, .app-section > h3::after, #club-detail-view h3::after {
+        animation: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-link, nav button { padding: 8px 14px; }
+}
