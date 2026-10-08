@@ -104,3 +104,4 @@ Toggle the theme using the 🌙/☀️ button in the header. Your preference is 
 ## 📄 License
 
 This project is built for educational purposes at City University.
+
